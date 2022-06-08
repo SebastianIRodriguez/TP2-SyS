@@ -14,7 +14,7 @@ ky= -(k * ieq^2)/yeq^2;
 
 hold on
 plot(y,'r', 'LineSmoothing','on');
-plot(ylineal, 'LineSmoothing','on');
+plot(delta_y + yeq, 'LineSmoothing','on');
 xlabel('Tiempo [s]');
 ylabel('Altura [m]');
 %axis([0 10 0 0.6])
