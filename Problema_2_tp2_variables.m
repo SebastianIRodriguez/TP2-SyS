@@ -5,8 +5,8 @@ L=0.01;
 M=0.2;
 b=0.5;
 k=2;
-kp=100;
-kcomp = (153.7 + ki * kp)/(ki * kp)
+kp=1000;
+kcomp = (153.7 + ki * kp)/(ki * kp);
 
 % Valores de equilibrio
 yeq = 0.2551;
@@ -19,18 +19,26 @@ ki= (2 * ieq * k)/yeq;
 ky= -(k * ieq^2)/yeq^2;
 
 
-% Comparación entre la y original y la calculada
+% Comparación entre la incremental original y la compensada
 hold on
 plot(delta_y,'r', 'LineSmoothing','on');
 plot(delta_y_comp, 'LineSmoothing','on');
 xlabel('Tiempo [s]');
 ylabel('Delta altura [m]');
-%axis([0 10 0 0.6])
 hold off
-%legend('');
 
 
 %{
+
+% Comparación entre la nolineal y la incremental
+hold on
+plot(y,'r', 'LineSmoothing','on');
+plot(delta_y + yeq, 'LineSmoothing','on');
+xlabel('Tiempo [s]');
+ylabel('Delta altura [m]');
+hold off
+
+% Gráfica de y(t), i(t), u(t)
 subplot(311), plot(y);
 xlabel('Tiempo [s]');
 ylabel('y');grid;
@@ -43,9 +51,10 @@ ylabel('u');grid;
 
 %}
 
-grid;
-
 %{
+% Gráfica de delta y(t), delta i(t), delta u(t) sobre sus valores de
+% equilibrio
+
 subplot(311), plot(delta_y + yeq);
 xlabel('Tiempo [s]');
 ylabel('y');grid;
@@ -56,3 +65,5 @@ subplot(313), plot(delta_u + ueq);
 xlabel('Tiempo [s]');
 ylabel('u');grid;
 %}
+
+grid;
