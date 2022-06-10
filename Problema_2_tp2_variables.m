@@ -5,7 +5,8 @@ L=0.01;
 M=0.2;
 b=0.5;
 k=2;
-kp=1000;
+kp=100;
+kcomp = (153.7 + ki * kp)/(ki * kp)
 
 % Valores de equilibrio
 yeq = 0.2551;
@@ -20,13 +21,13 @@ ky= -(k * ieq^2)/yeq^2;
 
 % Comparación entre la y original y la calculada
 hold on
-plot(y,'r', 'LineSmoothing','on');
-plot(delta_y + yeq, 'LineSmoothing','on');
+plot(delta_y,'r', 'LineSmoothing','on');
+plot(delta_y_comp, 'LineSmoothing','on');
 xlabel('Tiempo [s]');
-ylabel('Altura [m]');
+ylabel('Delta altura [m]');
 %axis([0 10 0 0.6])
 hold off
-legend('y', 'y incremental');
+%legend('');
 
 
 %{
